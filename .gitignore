@@ -1,3 +1,7 @@
 Add_Fracao\Add_Fracao-01/
 Simplificacao\exe.win-amd64-3.9/
 *.html
+*.toc
+*.zip
+*.pyd
+*.dll
