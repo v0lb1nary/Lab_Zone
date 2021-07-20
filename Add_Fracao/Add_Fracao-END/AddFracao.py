@@ -75,8 +75,64 @@ def ReducaoNumerador(nN,n1,n2):
   else:
     return {0:nN, 1:n1, 2:n2, 3:"("+str(nN)+") "+str(n1)+"/"+str(n2)}
 
-while True:
+def maior_menor(i,j):
+  return i if i > j else j
 
+def MMD(n1,n2):
+  """ Retorna o Minino Multiplo Comum de 2 numeros """
+  
+  list_MMD = ()
+  while n1 > 1 or n2 > 1:
+    w = maior_menor(n1,n2)
+    for i in range(2,w+1):
+      # print("contado:",i," x:",x," y:",y," i:",i)
+      if n1 % i == 0 and n2 % i == 0:
+        list_MMD += i,
+        n1 = int(n1/i)
+        n2 = int(n2/i)
+        break
+
+      elif n1 % i == 0 or n2 % i == 0:
+        if n1 % i == 0:
+          list_MMD += i,
+          n1 = int(n1/i)
+          break
+
+        if n2 % i == 0:
+          list_MMD += i,
+          n2 = int(n2/i)
+          break
+
+      else:
+        pass
+
+      pass
+    pass
+
+  result = 1
+  for i in list_MMD:
+    result *= i
+
+  return(result)
+
+def Divisor(x,j):
+  for i in range(1,j):
+    if x*i == j:
+      return (i)
+      pass
+    else:
+      pass
+  
+def AdaptedeFracao(f1,f2):
+  var = MMD(f1[2],f2[2])
+  f1[1] *= Divisor(f1[2],var)
+  f2[1] *= Divisor(f2[2],var)
+  f1[2] = var
+
+
+
+while True:
+  
   f1 = []
   f2 = []
 
@@ -91,7 +147,14 @@ while True:
 
   f2 += inputInt("Isira um valor do inteiro (2°)"),
   f2 += inputInt("Isira um valor do numerador (2°)"),
-   
-  #f2 += inputInt("Isira um valor denominador (2°)"), #! DENOMINADORES DIFERENTES
+  f2 += inputInt("Isira o valor denominador (2°)"),
+
+  while f2[2] == 0:
+    print("'0' não pode ser um denominador")
+    f2[2] = inputInt("Isira o valor denominador (2°)")
+    pass
   
-    Conta(f1,f2)
+  if f1[2] != f2[2]:
+    AdaptedeFracao(f1,f2)
+  
+  Conta(f1,f2)
