@@ -3,3 +3,4 @@
 *.zip
 *.pyd
 *.dll
+.vscode/.ropeproject/objectdb
